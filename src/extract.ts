@@ -22,6 +22,7 @@ export async function extractFromScreenshot(base64Image: string): Promise<Extrac
   - Capitalize properly (e.g. "sarah" → "Sarah")
   - Strip emojis and special characters
   - Use only the first name, not full name
+  - If the display name is not a sensical real first name (e.g. it's a brand name, random characters, or gibberish), use the TikTok username instead (the text after the @ symbol, without the @).
 
 Return ONLY valid JSON: { "email": "...", "firstName": "..." }`,
       },
