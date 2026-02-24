@@ -1,6 +1,6 @@
 import OpenAI from "openai";
 
-const openai = new OpenAI();
+const openai = new OpenAI({ timeout: 45_000 });
 
 interface ExtractResult {
   firstName: string;
@@ -9,7 +9,7 @@ interface ExtractResult {
 
 export async function extractFromScreenshot(base64Image: string): Promise<ExtractResult> {
   const response = await openai.chat.completions.create({
-    model: "gpt-4o",
+    model: "gpt-4o-mini",
     max_tokens: 200,
     response_format: { type: "json_object" },
     messages: [
