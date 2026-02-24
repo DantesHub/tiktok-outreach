@@ -24,8 +24,13 @@ app.post("/outreach", async (c) => {
 
     const { subject, body } = renderEmail(firstName);
     console.log("Sending email...");
-    await sendEmail(email, subject, body);
-    console.log("Email sent!");
+    try {
+      await sendEmail(email, subject, body);
+      console.log("Email sent!");
+    } catch (emailErr) {
+      console.error("Email error:", emailErr);
+      throw emailErr;
+    }
 
     return c.json({ success: true, firstName, email });
   } catch (err) {
