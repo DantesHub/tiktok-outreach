@@ -12,17 +12,27 @@ oauth2Client.setCredentials({
 
 const gmail = google.gmail({ version: "v1", auth: oauth2Client });
 
-export async function sendEmail(to: string, subject: string, body: string) {
+export async function sendEmail(to: string, subject: string, body: string, html: string) {
   const from = process.env.GMAIL_USER!;
+  const boundary = "boundary_" + Date.now();
 
-  // Build raw RFC 2822 message
+  // Build raw RFC 2822 multipart message (plain + HTML)
   const messageParts = [
     `From: ${from}`,
     `To: ${to}`,
     `Subject: ${subject}`,
+    `MIME-Version: 1.0`,
+    `Content-Type: multipart/alternative; boundary="${boundary}"`,
+    "",
+    `--${boundary}`,
     `Content-Type: text/plain; charset="UTF-8"`,
     "",
     body,
+    `--${boundary}`,
+    `Content-Type: text/html; charset="UTF-8"`,
+    "",
+    html,
+    `--${boundary}--`,
   ];
   const rawMessage = messageParts.join("\r\n");
 

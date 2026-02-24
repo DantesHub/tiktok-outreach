@@ -22,10 +22,10 @@ app.post("/outreach", async (c) => {
     const { firstName, email } = await extractFromScreenshot(image);
     console.log(`Extracted: ${firstName} <${email}>`);
 
-    const { subject, body } = renderEmail(firstName);
+    const { subject, body, html } = renderEmail(firstName);
     console.log("Sending email...");
     try {
-      await sendEmail(email, subject, body);
+      await sendEmail(email, subject, body, html);
       console.log("Email sent!");
     } catch (emailErr) {
       console.error("Email error:", emailErr);
