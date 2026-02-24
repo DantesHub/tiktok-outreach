@@ -1,0 +1,22 @@
+{
+  "name": "tiktok-auto-outreach",
+  "module": "src/index.ts",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "bun run --watch src/index.ts",
+    "start": "bun run src/index.ts"
+  },
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "dependencies": {
+    "@types/nodemailer": "^7.0.11",
+    "hono": "^4.12.2",
+    "nodemailer": "^8.0.1",
+    "openai": "^6.24.0"
+  }
+}
