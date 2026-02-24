@@ -17,7 +17,7 @@ If interested, let's hop in a 2 minute call!
 
 Thanks,
 Saad`,
-    html: `<p>Salaams ${firstName},</p>
+    html: `<p>Hey ${firstName},</p>
 <p>I love your content and would love to do a promotion with you !!</p>
 <p>Our app is "Finch for Muslims" - keep up with daily Islamic goals with friends!</p>
 <p>It's called "Lumo Daily Light" if you want to check it out on the app store:</p>
