@@ -12,12 +12,20 @@ app.use("/outreach", bearerAuth({ token: process.env.API_AUTH_TOKEN! }));
 
 app.post("/outreach", async (c) => {
   try {
-    const { image } = await c.req.json<{ image: string }>();
+    const body_json = await c.req.json<{ image: string }>();
+    const image = body_json?.image;
+    console.log(`Received request. Has image: ${!!image}, length: ${image?.length ?? 0}`);
+
     if (!image) return c.json({ error: "Missing 'image' field (base64)" }, 400);
 
+    console.log("Calling GPT-4o-mini...");
     const { firstName, email } = await extractFromScreenshot(image);
+    console.log(`Extracted: ${firstName} <${email}>`);
+
     const { subject, body } = renderEmail(firstName);
+    console.log("Sending email...");
     await sendEmail(email, subject, body);
+    console.log("Email sent!");
 
     return c.json({ success: true, firstName, email });
   } catch (err) {
