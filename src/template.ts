@@ -16,13 +16,20 @@ ${appUrl}
 If interested, let's hop in a 2 minute call!
 
 Thanks,
-Saad`,
+Saad
+
+p.s. I post about it on my TikTok - check it out!
+
+https://www.tiktok.com/@saad.sochill`,
     html: `<p>Hey ${firstName},</p>
 <p>I love your content and would love to do a promotion with you !!</p>
 <p>Our app is "Finch for Muslims" - keep up with daily Islamic goals with friends!</p>
 <p>It's called <b>"Lumo Daily Light"</b> if you want to check it out on the app store:</p>
 <p><a href="${appUrl}">${appUrl}</a></p>
 <p>If interested, let's hop in a 2 minute call!</p>
-<p>Thanks,<br>Saad</p>`,
+<p>Thanks,<br>Saad</p>
+<br>
+<p>p.s. I post about it on my TikTok - check it out!</p>
+<p><a href="https://www.tiktok.com/@saad.sochill">https://www.tiktok.com/@saad.sochill</a></p>`,
   };
 }
