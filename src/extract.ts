@@ -31,7 +31,7 @@ Return ONLY valid JSON: { "email": "...", "firstName": "..." }`,
         content: [
           {
             type: "image_url",
-            image_url: { url: `data:image/png;base64,${base64Image}`, detail: "low" },
+            image_url: { url: `data:image/png;base64,${base64Image}`, detail: "high" },
           },
         ],
       },
