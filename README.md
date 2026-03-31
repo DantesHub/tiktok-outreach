@@ -74,10 +74,22 @@ curl -X POST http://localhost:3000/outreach \
 
 ## Deploy to Railway
 
-1. Push to GitHub
-2. Connect the repo on [Railway](https://railway.app)
-3. Set the environment variables above
-4. Start command: `bun run src/index.ts`
+1. Push to GitHub.
+2. Create a new Railway project from this repo.
+3. In Railway service settings:
+   - Build command: `bun install`
+   - Start command: `bun run start`
+   - Healthcheck path: `/health`
+4. In Railway variables, set:
+   - `ANTHROPIC_API_KEY`
+   - `OPENAI_API_KEY` (optional, only needed for fallback)
+   - `DISABLE_OPENAI_FALLBACK` (`false` to enable fallback, `true` for Anthropic-only)
+   - `GMAIL_USER`
+   - `GMAIL_APP_PASSWORD`
+   - `API_AUTH_TOKEN`
+5. In Railway networking, generate a public domain for the service (it will look like `https://your-service.up.railway.app`).
+6. Verify deployment:
+   - `GET https://your-service.up.railway.app/health` should return `{ "status": "ok" }`.
 
 ## Apple Shortcut Setup
 

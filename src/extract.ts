@@ -1,6 +1,5 @@
 import OpenAI from "openai";
 
-const openai = new OpenAI({ timeout: 45_000 });
 const openaiModel = process.env.OPENAI_MODEL || "gpt-4o-mini";
 const anthropicModel = process.env.ANTHROPIC_MODEL || "claude-sonnet-4-20250514";
 const prompt = `You extract contact info from TikTok profile screenshots. Return JSON with:
@@ -99,6 +98,16 @@ async function extractWithAnthropic(base64Image: string): Promise<ExtractResult>
 }
 
 async function extractWithOpenAI(base64Image: string): Promise<ExtractResult> {
+  const openaiApiKey = process.env.OPENAI_API_KEY;
+  if (!openaiApiKey) {
+    throw new Error("OPENAI_API_KEY is not set");
+  }
+
+  const openai = new OpenAI({
+    apiKey: openaiApiKey,
+    timeout: 45_000,
+  });
+
   const response = await openai.chat.completions.create({
     model: openaiModel,
     max_tokens: 200,

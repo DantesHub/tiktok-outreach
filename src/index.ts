@@ -5,10 +5,20 @@ import { renderEmail } from "./template.ts";
 import { sendEmail } from "./email.ts";
 
 const app = new Hono();
+const apiAuthToken = process.env.API_AUTH_TOKEN;
 
 app.get("/health", (c) => c.json({ status: "ok" }));
 
-app.use("/outreach", bearerAuth({ token: process.env.API_AUTH_TOKEN! }));
+if (apiAuthToken) {
+  app.use("/outreach", bearerAuth({ token: apiAuthToken }));
+} else {
+  app.use("/outreach", async (c) => {
+    return c.json(
+      { error: "Server is missing API_AUTH_TOKEN. Set it in your environment variables." },
+      503
+    );
+  });
+}
 
 app.post("/outreach", async (c) => {
   try {
@@ -18,7 +28,7 @@ app.post("/outreach", async (c) => {
 
     if (!image) return c.json({ error: "Missing 'image' field (base64)" }, 400);
 
-    console.log("Calling GPT-4o-mini...");
+    console.log("Extracting creator info from screenshot...");
     const { firstName, email } = await extractFromScreenshot(image);
     console.log(`Extracted: ${firstName} <${email}>`);
 
@@ -40,11 +50,13 @@ app.post("/outreach", async (c) => {
   }
 });
 
-const port = parseInt(process.env.PORT || "3000");
+const requestedPort = Number.parseInt(process.env.PORT ?? "3000", 10);
+const port = Number.isFinite(requestedPort) && requestedPort > 0 ? requestedPort : 3000;
 
-export default {
+const server = Bun.serve({
+  hostname: "0.0.0.0",
   port,
   fetch: app.fetch,
-};
+});
 
-console.log(`Server running on port ${port}`);
+console.log(`Server running on ${server.url}`);
