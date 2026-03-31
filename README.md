@@ -7,14 +7,15 @@ Screenshot a TikTok creator's profile → share it via an Apple Shortcut → an 
 1. You screenshot a creator's TikTok profile (that has their email in the bio)
 2. Tap the screenshot preview → Share → **Outreach Creator**
 3. The shortcut sends the image to your server
-4. GPT-4o Vision extracts the creator's **name** and **email** from the screenshot
+4. Anthropic Vision extracts the creator's **name** and **email** from the screenshot
+   - If Anthropic fails, it automatically falls back to OpenAI
 5. A personalized outreach email is sent via Gmail
 6. You get a notification confirming it was sent
 
 ## Architecture
 
 ```
-Apple Shortcut → Bun/Hono Server (Railway) → GPT-4o Vision → Gmail SMTP
+Apple Shortcut → Bun/Hono Server (Railway) → Anthropic Vision (fallback: OpenAI) → Gmail SMTP
 ```
 
 ## Project Structure
@@ -22,7 +23,7 @@ Apple Shortcut → Bun/Hono Server (Railway) → GPT-4o Vision → Gmail SMTP
 ```
 src/
   index.ts       — Hono server with /health and /outreach endpoints
-  extract.ts     — GPT-4o Vision: extracts email + first name from screenshot
+  extract.ts     — Anthropic-first extraction with OpenAI fallback
   email.ts       — Nodemailer Gmail SMTP transport
   template.ts    — Email subject + body template
 ```
@@ -45,7 +46,11 @@ Fill in your `.env`:
 
 | Variable | Description |
 |----------|-------------|
-| `OPENAI_API_KEY` | GPT-4o API key |
+| `ANTHROPIC_API_KEY` | Anthropic API key (primary vision provider) |
+| `OPENAI_API_KEY` | OpenAI API key (fallback provider) |
+| `ANTHROPIC_MODEL` | Optional override (default: `claude-sonnet-4-20250514`) |
+| `OPENAI_MODEL` | Optional override (default: `gpt-4o-mini`) |
+| `DISABLE_OPENAI_FALLBACK` | Set to `true` to force Anthropic-only extraction |
 | `GMAIL_USER` | Gmail address to send from |
 | `GMAIL_APP_PASSWORD` | Gmail app password ([generate here](https://myaccount.google.com/apppasswords)) |
 | `API_AUTH_TOKEN` | Random secret string to secure the endpoint |
