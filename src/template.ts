@@ -1,50 +1,40 @@
 export function renderEmail(firstName: string): { subject: string; body: string; html: string } {
-  const appUrl = "https://apps.apple.com/gb/app/lumo-daily-light/id6757131632";
-  const tiktokUrl = "https://www.tiktok.com/@saad.sochill";
-  const creatorUrl = "https://www.tiktok.com/@maryam.prays6";
+  const appUrl = "https://apps.apple.com/us/app/focus-town-study-with-friends/id6758457625";
+  const loomUrl = "https://www.loom.com/share/db0013e0c1ad4128b23a948d2d8c3166";
 
   return {
-    subject: `${firstName} x Lumo | Paid Collab?`,
+    subject: `${firstName} x Animal Crossing StudywithME collab`,
     body: `Hey!
 
-I love your content and would love to do UGC-content with you!
+I recently came across one of your videos on my foryou page and ended up checking out your account. I really loved your overall aesthetic, the fonts, music, and sound design all feel super intentional.
 
-It's for our app Lumo - it's like "Finch for Muslims" - keep up with daily spiritual goals with friends.
+My name is Dante, and I recently launched Focustown, a cozy focus timer inspired by Animal Crossing where people can study with real others in real time. I originally built it for my little sister who has ADHD, and the whole goal is to make studying feel more fun and less lonely.
 
-You don't need to be Muslim to do this!
+You can check it out here:
+${appUrl}
 
-Here's how UGC would work:
+I also made a short walkthrough for you here:
+${loomUrl}
 
-1. $20 sign up bonus
-2. You'd be posting on a separate account
-3. I'll provide an example TikTok which you literally make a 1-1 copy off (so super low commitment)
-4. You get paid weekly for your videos based on performance!
+Right now it's still a very small team, just me and one other person, so I'm being really thoughtful about the creators I work with early. I'd love to collaborate on a couple of posts and hopefully build a longer-term relationship if it feels like a strong fit on both sides.
 
-One of my creators has already made $400 in 2 weeks:
-${creatorUrl}
+I'm also looking for someone to eventually help lead growth for the app longer term, so in my mind this could be more than just a typical one-off brand post with the right person. No pressure at all on that, but I wanted to mention it because I really like your taste and the way you present things online.
 
-I'd love to have you on - happy to jump on a call to discuss!
+My budget is still pretty tight at this stage, so I'd really appreciate any flexibility on rates for the first couple of posts. As the app grows, I definitely want compensation to grow too and keep building with the people who believed in it early.
 
-Thanks,
-Saad
+Let me know if this sounds interesting :)
 
-p.s. I post about the app on my TikTok - check it out:
-${tiktokUrl}`,
+Best,
+Dante`,
     html: `<p>Hey!</p>
-<p>I love your content and would love to do UGC-content with you!</p>
-<p>It's for our app Lumo - it's like "Finch for Muslims" - keep up with daily spiritual goals with friends.</p>
-<p><b>You don\u2019t need to be Muslim to do this!</b></p>
-<p>Here\u2019s how UGC would work:</p>
-<ol>
-<li>$20 sign up bonus</li>
-<li>You'd be posting on a separate account</li>
-<li>I'll provide an example TikTok which you literally make a 1-1 copy off (so super low commitment)</li>
-<li>You get paid weekly for your videos based on performance!</li>
-</ol>
-<p>One of my creators has already made $400 in 2 weeks:</p>
-<p><a href="${creatorUrl}">${creatorUrl}</a></p>
-<p>I'd love to have you on - happy to jump on a call to discuss!</p>
-<p>Thanks,<br>Saad</p>
-<p>p.s. I post about the app on my TikTok - check it out:<br><a href="${tiktokUrl}">${tiktokUrl}</a></p>`,
+<p>I recently came across one of your videos on my foryou page and ended up checking out your account. I really loved your overall aesthetic, the fonts, music, and sound design all feel super intentional.</p>
+<p>My name is Dante, and I recently launched Focustown, a cozy focus timer inspired by Animal Crossing where people can study with real others in real time. I originally built it for my little sister who has ADHD, and the whole goal is to make studying feel more fun and less lonely.</p>
+<p>You can check it out here:<br><a href="${appUrl}">${appUrl}</a></p>
+<p>I also made a short walkthrough for you here:<br><a href="${loomUrl}">${loomUrl}</a></p>
+<p>Right now it's still a very small team, just me and one other person, so I'm being really thoughtful about the creators I work with early. I'd love to collaborate on a couple of posts and hopefully build a longer-term relationship if it feels like a strong fit on both sides.</p>
+<p>I'm also looking for someone to eventually help lead growth for the app longer term, so in my mind this could be more than just a typical one-off brand post with the right person. No pressure at all on that, but I wanted to mention it because I really like your taste and the way you present things online.</p>
+<p>My budget is still pretty tight at this stage, so I'd really appreciate any flexibility on rates for the first couple of posts. As the app grows, I definitely want compensation to grow too and keep building with the people who believed in it early.</p>
+<p>Let me know if this sounds interesting :)</p>
+<p>Best,<br>Dante</p>`,
   };
 }
